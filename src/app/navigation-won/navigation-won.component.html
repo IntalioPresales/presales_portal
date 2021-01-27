@@ -1,0 +1,186 @@
+<mdb-navbar SideClass="navbar navbar-dark sticky-top">
+  <mdb-navbar-brand>
+      <a class="navbar-brand" (click)="Route()">
+          <img src="./assets/img/everteam-logo.png" height="20" alt="">
+      </a>
+  </mdb-navbar-brand>
+  <form class="form-inline my-2 my-lg-0 ml-auto">
+    <button [routerLink]="['/']" class="btn btn-outline-primary btn-md my-2 my-sm-0 btncolor">Logout</button>
+  </form>
+</mdb-navbar>
+<div style="margin:20px 40px">
+<div class="row justify-content-center" style="display:contents !important;">
+<div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+    <button *ngIf="!member" mat-raised-button color="primary" (click)="exporter.exportTable('xlsx', {fileName:'All-Opportunities', sheet: 'sheet_name'})" class="ml-3" >Export To Excel</button>
+
+  </div>
+
+  <div class="example-container mat-elevation-z8">
+
+    <mat-table  matTableExporter #exporter="matTableExporter" [dataSource]="dataSource" matSort>
+
+      <!-- ID Column -->
+    <ng-container matColumnDef="navigate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>View Opportunity</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button color="primary" mat-raised-button (click)="Navigate(row.id,row.firstname,row.lastname)">View</button>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Progress Column -->
+      <ng-container matColumnDef="firstname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Firstname </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.firstname}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="lastname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Lastname </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.lastname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="appreviation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Client Abbreviation </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.appreviation}} </mat-cell>
+      </ng-container>
+
+
+      <!-- Color Column -->
+      <ng-container matColumnDef="country">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Country </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.country}} </mat-cell>
+      </ng-container>
+      <!-- <ng-container matColumnDef="fullname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Client Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.fullname}} </mat-cell>
+      </ng-container> -->
+      <!-- <ng-container matColumnDef="appreviation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Abbreviation </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.appreviation}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="contactname">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Name </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.contactname}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contacttitle">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Title  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.contacttile}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contactemail">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Email  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.contactemail}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="contactnumber">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Contact Number  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.contactnumber}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ppi">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> PPI  </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.previousprojectinfo}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="clienttype">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Client Type </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.clienttype}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="numberofemployees">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> NbrofEmployees </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.numberofemployees}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="clientindustry">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Client Industry</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.clientindustry}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="url">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>URL</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.url}} </mat-cell>
+      </ng-container> -->
+      <ng-container matColumnDef="learn">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Source</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.learn}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="recieveddate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Recieved Date</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.recieveddate}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="clientsubmissiondate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Client Submission Date</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.clientsubmissiondate}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="projectdesc">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Project Description</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.projectdesc}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="otherobservation">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Other Observation</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.otherobservation}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="deliverytimeline">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Delivery Timeline</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.deliverytimeline}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="requiredtechnology">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Required Technology</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.requiredtechnology}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="chanceofWinning">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Chance of Winning</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.chanceofWinning}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="competitors">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Competitors</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.competitors}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="budgetrange">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Budget Range</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.budgetrange}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="proposaltype">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Proposal Type</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.proposaltype}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="dueDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Due Date</mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.dueDate}} </mat-cell>
+      </ng-container>
+
+      <!-- <ng-container matColumnDef="uploads">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>Uploads</mat-header-cell>
+          <mat-cell *matCellDef="let row">
+            <div *ngFor="let x of row.string">
+                <a href="{{x}}">{{x}}</a>
+                </div>
+             </mat-cell>
+        </ng-container> -->
+
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <mat-paginator [pageSizeOptions]="[8, 10, 25, 100]"></mat-paginator>
+  </div>
+
+  </div>
+  </div>

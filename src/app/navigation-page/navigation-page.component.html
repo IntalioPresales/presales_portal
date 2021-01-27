@@ -1,0 +1,31 @@
+<body>
+	<div class="limiter" >
+
+		<div class="container bg" [ngStyle]="{ 'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%), url(' + this.globals.Navpagesrc + ')'}" style="width: 100%;position: relative;max-width: 100% !important">
+			<mdb-navbar SideClass="navbar navbar-dark" class="navCss">
+				<a class="navbar-brand">
+					<img src="./assets/img/EverteamLogowhite.png" height="30" alt="">
+				</a>
+				<form class="form-inline my-2 my-lg-0 ml-auto">
+					<button [routerLink]="['/']" class="btn btn-outline-primary btn-md my-2 my-sm-0 btncolor">Logout</button>
+				  </form>
+			</mdb-navbar>
+		<!-- <div class="container-login100"> -->
+			<div class="container-login100 wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+				<form class="login100-form validate-form flex-sb flex-w">
+					<a [routerLink]="['/viewsubmitteddata']" class=" mb-3">
+                        <img src="{{this.globals.folderviewsrc}}" class="photo">
+						<label class="labelrgba">View Your Opportunities</label>
+                    </a>
+                    <a [routerLink]="['/main']">
+                        <img src="{{this.globals.salessrc}}" class="photo">
+						<label class="labelrgba">Presales Request</label>
+					</a>
+
+				</form>
+			</div>
+		<!-- </div> -->
+	</div>
+	 </div>
+
+	</body>

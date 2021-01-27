@@ -1,0 +1,124 @@
+
+    .container {
+      margin-top: 10px;
+    }
+    
+    .section-title {
+      margin-bottom: 20px;
+    }
+  
+    .user-details-container {
+      padding-top:20px;
+      text-align: center;
+  
+      .user-image {
+        width: 100%;
+        border-radius: 50%;
+      }
+  
+      .user-title {
+        font-size: 14px;
+        font-weight: 500;
+        margin-top: 30px;
+        display: block;
+      }
+  
+      .user-bio {
+        font-size: 12px;
+        margin-top: 20px;
+        display: block;
+        color: rgba(0, 0, 0, 0.70);
+      }
+    }
+  
+  
+  
+    .full-width {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  
+    .error-message {
+      font-size: 12px;
+    }
+  
+    .double-line-hint {
+      .mat-input-hint-wrapper {
+        flex-wrap: wrap;
+  
+        .hint-line {
+          flex: 0 0 100%;
+        }
+      }
+    }
+  
+    .submit-btn {
+      margin-top: 30px;
+    }
+
+  .titlecss{
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+  }
+  
+  
+  .example-section {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  
+  .example-margin {
+    margin: 0 10px;
+  }
+  h6{
+    color:#202020;
+  }
+  .dropzone { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; 
+    height: 300px;
+    border: 2px dashed #f16624;
+    border-radius: 5px;
+    background: white;
+    margin: 10px 0;
+  
+    &.hovering {
+        border: 2px solid #f16624;
+        color: #dadada !important;
+    }
+  }
+  
+  progress::-webkit-progress-value {
+    transition: width 0.1s ease;
+  }
+  .img-preview {
+    position: relative;
+    padding: 10px;
+    top: 20px;
+  }
+  
+   event-log {
+    position: relative;
+    top: 20px;
+  }
+  .currencyinput {
+    border: 1px inset #ccc;
+}
+.currencyinput input {
+    border: 0;
+}
+  
+  ::ng-deep.navbar{
+    background-color:white;
+  }
+
+  ::ng-deep.multiselect-item-checkbox[_ngcontent-lql-c7] input[type=checkbox][_ngcontent-lql-c7] + div[_ngcontent-lql-c7]:before{
+    color:#12b08b !important;
+    border:2px solid #12b08b;
+  }
+  .multiselect-item-checkbox[_ngcontent-oin-c7] input[type=checkbox][_ngcontent-oin-c7]:checked + div[_ngcontent-oin-c7]:before{
+    background-color: #12b08b !important;
+  }

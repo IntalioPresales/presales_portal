@@ -1,0 +1,66 @@
+<body>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div class="login100-form-title" style="background-image: url(assets/img/bg-01.jpg);">
+          <span class="login100-form-title-1" style="margin-top: 10px;">
+            <img src="assets/img/EverteamLogowhite.png" width="250px">
+          </span>
+          <span class="login100-form-title-1" style="margin-top: 2%;padding-right: 2%;">
+            Presales Portal
+          </span>
+        </div>
+
+
+        <form [formGroup]="angForm" novalidate class="login100-form validate-form" (ngSubmit)="submitLogin(FirstName.value,LastName.value)">
+          <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
+            <span class="label-input100">Email address *</span>
+            <input class="input100" type="text" [ngClass]="{ 'is-invalid': submitted && angForm.get('name').errors }" placeholder="" #FirstName formControlName="name" required>
+            <mat-error *ngIf="submitted && angForm.get('name').errors" class="error-message pt-2 pl-4">
+              Email address is required!
+            </mat-error>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="wrap-input100 validate-input m-b-18" data-validate="Password is required" [ngClass]="{ 'mt-3': submitted && angForm.get('name').errors }">
+            <span class="label-input100">Password *</span>
+            <input class="input100" type="password" name="pass" placeholder="" #LastName formControlName="last" required>
+            <mat-error *ngIf="submitted && angForm.get('last').errors && !incorrect" class="error-message pt-2 pl-4">
+              Password is required!
+            </mat-error>
+            <mat-error *ngIf="submitted && incorrect" class="error-message pt-2 pl-4">
+              Incorrect email or password!
+            </mat-error>
+            <span class="focus-input100"></span>
+          </div>
+
+          <div class="flex-sb-m w-full p-b-30">
+            <!-- <div class="contact100-form-checkbox">
+							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+							<label class="label-checkbox100" for="ckb1">
+								Remember me
+							</label>
+            </div> -->
+            <!-- <div>
+              <a href="#" class="txt1" (click)=open()>
+               Signup
+              </a>
+            </div> -->
+
+            <div>
+              <a href="#" class="txt1" (click)=openforgetpass()>
+                Forgot Password?
+              </a>
+            </div>
+          </div>
+
+          <div class="container-login100-form-btn">
+            <button class="login100-form-btn" type="submit">
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>

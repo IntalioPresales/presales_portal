@@ -1,0 +1,38 @@
+.mat-table {
+    overflow-x: scroll;
+  }
+  .mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  font-size: 15px;
+  padding: 0px 10px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+.mat-row:nth-child(even){
+  background-color: #E8E8E8;
+}
+.mat-row:not(:nth-child(odd)){
+  background-color:#E8E8E8;
+}
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+
+  .mat-header-cell{
+    background-color: #00ae8d !important;
+    color: white !important;
+  }
+
+  .btncolor{
+    background-color: #12B08B;
+    color:white;
+    margin-left: 20%;
+    outline: none !important;
+    border: none !important;
+  }

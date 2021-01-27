@@ -1,0 +1,92 @@
+<body>
+<div class="limiter" *ngIf="this.globals.currentuser.firstname=='Mazen'||this.globals.currentuser.firstname=='Stephanie'">
+
+    <div class="container bg" [ngStyle]="{ 'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%), url(' + this.globals.Navpagesrc + ')'}" style="width: 100%;position: relative;max-width: 100% !important">
+        <mdb-navbar SideClass="navbar navbar-dark " class="navCss">
+            <a class="navbar-brand">
+                <img src="./assets/img/EverteamLogowhite.png" height="30" alt="">
+            </a>
+            <form class="form-inline my-2 my-lg-0 ml-auto">
+                <button (click)="Logout()" class="btn btn-outline-primary btn-md my-2 my-sm-0 btncolor">Logout</button>
+              </form>
+        </mdb-navbar>
+    <!-- <div class="container-login100"> -->
+        <div class="container-login100 wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+            <form class="login100-form validate-form flex-sb flex-w">
+   <a [routerLink]="['/viewactivedata']">
+                    <img src="{{this.globals.folderviewsrc}}" class="photo ml-2">
+                    <label class="labelrgba">Active Opportunities</label>
+                </a>
+                <a [routerLink]="['/viewsubmitteddata']">
+                    <img src="{{this.globals.foldersrc}}" class="photo ml-4">
+                    <label class="labelrgba">Submitted Opportunities</label>
+                </a>
+                <a [routerLink]="['/viewwondata']">
+                  <img src="{{this.globals.wonsrc}}" class="photo ml-4">
+                  <label class="labelrgba">Won Opportunities</label>
+              </a>
+                 <a href="http://presales/_layouts/15/EverSuite.DMS/Main.aspx" target="_blank" >
+                    <img src="{{this.globals.archivesrc}}" class="photo">
+                    <label class="labelrgba">Presales Portal</label>
+                </a>
+
+                <a href="http://presales-etgs.com/dashboard/" target="_blank">
+                    <img src="{{this.globals.barchartsrc}}" class="photo">
+                    <label class="labelrgba">View Dashboard</label>
+                </a>
+
+            </form>
+        </div>
+    <!-- </div> -->
+</div>
+ </div>
+
+
+ <div class="limiter" *ngIf="this.globals.currentuser.firstname=='Antoine' && this.globals.currentuser.lastname=='HRAOUI'|| this.globals.currentuser.firstname=='MarieTherese' && this.globals.currentuser.lastname=='AMMOUN'">
+
+  <div class="container bg" [ngStyle]="{ 'background-image': 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.7) 100%), url(' + this.globals.Navpagesrc + ')'}" style="width: 100%;position: relative;max-width: 100% !important">
+      <mdb-navbar SideClass="navbar navbar-dark " class="navCss">
+          <a class="navbar-brand">
+              <img src="./assets/img/EverteamLogowhite.png" height="30" alt="">
+          </a>
+          <form class="form-inline my-2 my-lg-0 ml-auto">
+              <button (click)="Logout()" class="btn btn-outline-primary btn-md my-2 my-sm-0 btncolor">Logout</button>
+            </form>
+      </mdb-navbar>
+  <!-- <div class="container-login100"> -->
+      <div class="container-login100 wrap-login100 p-l-110 p-r-110 p-t-62 p-b-33">
+          <form class="login100-form1 validate-form flex-sb flex-w">
+ <a [routerLink]="['/viewactivedata']">
+                  <img src="{{this.globals.folderviewsrc}}" class="photo ml-2">
+                  <label class="labelrgba1">Active Opportunities</label>
+              </a>
+              <a [routerLink]="['/viewsubmitteddata']">
+                  <img src="{{this.globals.foldersrc}}" class="photo ml-4">
+                  <label class="labelrgba1">Submitted Opportunities</label>
+              </a>
+              <a [routerLink]="['/viewwondata']">
+                <img src="{{this.globals.wonsrc}}" class="photo ml-4">
+                <label class="labelrgba1">Won Opportunities</label>
+            </a>
+
+            <a [routerLink]="['/main']" *ngIf="this.globals.currentuser.firstname=='Antoine' && this.globals.currentuser.lastname=='HRAOUI'|| this.globals.currentuser.firstname=='MarieTherese' && this.globals.currentuser.lastname=='AMMOUN'" >
+              <img src="{{this.globals.salessrc}}" class="photo">
+  <label class="labelrgba1">Presales Request</label>
+</a>
+               <a href="http://presales/_layouts/15/EverSuite.DMS/Main.aspx" target="_blank" >
+                  <img src="{{this.globals.archivesrc}}" class="photo">
+                  <label class="labelrgba1">Presales Portal</label>
+              </a>
+
+              <a href="http://presales-etgs.com/dashboard/#/dashboard/{{this.globals.currentuser.firstname}}/{{this.globals.currentuser.lastname}}" target="_blank">
+                  <img src="{{this.globals.barchartsrc}}" class="photo">
+                  <label class="labelrgba1">View Dashboard</label>
+              </a>
+
+          </form>
+      </div>
+  <!-- </div> -->
+</div>
+</div>
+
+</body>

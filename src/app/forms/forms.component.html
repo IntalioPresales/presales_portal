@@ -1,0 +1,442 @@
+<mdb-navbar SideClass="navbar navbar-dark sticky-top">
+  <mdb-navbar-brand>
+      <a class="navbar-brand" (click)="Route()">
+          <img src="./assets/img/everteam-logo.png" height="20" alt="">
+      </a>
+  </mdb-navbar-brand>
+  <form class="form-inline my-2 my-lg-0 ml-auto">
+    <button [routerLink]="['/']" class="btn btn-outline-primary btn-md my-2 my-sm-0 btncolor">Logout</button>
+  </form>
+</mdb-navbar>
+<div class="container">
+  <div class="row justify-content-center" style="display: contents !important;">
+    <div class="col">
+      <div class="user-details-container">
+    <h4 class="titlecss">Presales Request</h4>
+    </div>
+    </div>
+      <mat-horizontal-stepper linear #stepper  (selectionChange)="selectionStepperChange($event)">
+
+    <div class="col">
+      <h2 class="section-title">Client details</h2>
+      <mat-step [stepControl]="generalinfoForm">
+          <ng-template matStepLabel>General Info</ng-template>
+          <form [formGroup]="generalinfoForm" (ngSubmit)="onSubmitGeneralInfoDetails(generalinfoForm.value)">
+            <div class="row col-sm-4"> <h6>Account Manager</h6></div>
+              <div class="row">
+            <mat-form-field class="full-width col-sm-4" [floatLabel]="'always'">
+              <mat-label>First Name</mat-label>
+              <input matInput formControlName="first_name" readonly>
+              <!-- <mat-error *ngFor="let validation of validation_messages.first_name">
+                <mat-error class="error-message" >{{validation_messages.first_name.message}}</mat-error>
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="full-width col-sm-4" [floatLabel]="'always'">
+                <mat-label>Last Name</mat-label>
+                <input matInput formControlName="last_name" readonly>
+                <mat-error *ngFor="let validation of validation_messages.last_name">
+                  <mat-error class="error-message" *ngIf="generalinfoForm.get('last_name').hasError(validation.type) && (generalinfoForm.get('last_name').dirty || generalinfoForm.get('last_name').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+
+            </div>
+            <div class="row">
+                <mat-form-field class="full-width col-sm-4">
+                    <mat-select formControlName="country" placeholder="Country">
+                      <mat-option *ngFor="let country of countries" [value]="country">
+                        {{ country.name }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
+            <button class="submit-btn" color="primary" matStepperNext mat-raised-button type="submit" [disabled]="!generalinfoForm.valid">
+                Next
+              </button>
+            </form>
+    </mat-step>
+    </div>
+
+
+    <div class="col">
+      <mat-step [stepControl]="userDetailsForm">
+          <ng-template matStepLabel>Client Details</ng-template>
+          <form [formGroup]="userDetailsForm" (ngSubmit)="onSubmitUserDetails(userDetailsForm.value)">
+              <div class="row">
+            <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                <mat-label>Client Name</mat-label>
+              <input matInput formControlName="fullname" required>
+              <mat-error>Field is required</mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                <mat-label>Client Abbreviation</mat-label>
+              <input maxlength="6" matInput formControlName="appreviation" required>
+              <mat-hint align="end"><strong>Max:</strong>6</mat-hint>
+              <mat-error>Field is required</mat-error>
+            </mat-form-field>
+              </div>
+            <div class="row  col-8">
+                <h6>
+                    Client Contact Details:
+                </h6>
+              </div>
+              <div class="row">
+              <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                  <mat-label>Contact Name</mat-label>
+                <input matInput formControlName="name">
+                <mat-error *ngFor="let validation of validation_messages.fullname">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('fullname').hasError(validation.type) && (userDetailsForm.get('fullname').dirty || userDetailsForm.get('fullname').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                  <mat-label>Contact Title</mat-label>
+                <input matInput formControlName="title">
+                <mat-error *ngFor="let validation of validation_messages.fullname">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('fullname').hasError(validation.type) && (userDetailsForm.get('fullname').dirty || userDetailsForm.get('fullname').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                  <mat-label>Contact Email</mat-label>
+                <input type="email" matInput formControlName="email">
+                  <mat-error >Not a valid email</mat-error>
+              </mat-form-field>
+              <mat-form-field class="full-width col-sm-3" [floatLabel]="'always'">
+                  <mat-label>Contact Phone</mat-label>
+                <input type="number" matInput formControlName="number">
+                <mat-error *ngFor="let validation of validation_messages.fullname">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('fullname').hasError(validation.type) && (userDetailsForm.get('fullname').dirty || userDetailsForm.get('fullname').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+            </div>
+              <div class="row  col-8">
+              <h6>
+                  Previous project with clients:
+              </h6>
+            </div>
+              <div class="row">
+                  <mat-radio-group #radioGroup="matRadioGroup" class="col-sm-4" style="display: flex;">
+                    <mat-radio-button  value="yes">Yes</mat-radio-button>
+                    <mat-radio-button [checked]="true" class="example-margin" value="no">No</mat-radio-button>
+                  </mat-radio-group>
+              </div>
+              <mat-form-field class="full-width" *ngIf="radioGroup.value=='yes'">
+                  <textarea matInput  placeholder="List them" formControlName="bio"></textarea>
+                  <mat-error *ngFor="let validation of validation_messages.bio">
+                    <mat-error class="error-message" *ngIf="userDetailsForm.get('bio').hasError(validation.type) && (userDetailsForm.get('bio').dirty || userDetailsForm.get('bio').touched)">{{validation.message}}</mat-error>
+                  </mat-error>
+                </mat-form-field>
+
+            <div class="row pt-3">
+            <mat-form-field class="full-width col-sm-4" [floatLabel]="'always'">
+                <mat-label>Client Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option *ngFor="let type of types" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngFor="let validation of validation_messages.type">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('type').hasError(validation.type) && (userDetailsForm.get('type').dirty || userDetailsForm.get('type').touched)">{{validation.message}}</mat-error>
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width col-sm-4">
+              <mat-select placeholder="Number of Employees" formControlName="size">
+                <mat-option *ngFor="let size of employees" [value]="size">
+                  {{ size }}
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <mat-form-field class="full-width col-sm-4" [floatLabel]="'always'">
+                <mat-label>Client Industry</mat-label>
+              <mat-select  formControlName="industry">
+                <mat-option *ngFor="let industry of industries" [value]="industry">
+                  {{ industry }}
+                </mat-option>
+              </mat-select>
+              <!-- <mat-error *ngFor="let validation of validation_messages.industry">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('industry').hasError(validation.industry) && (userDetailsForm.get('industry').dirty || userDetailsForm.get('industry').touched)">{{validation.message}}</mat-error>
+              </mat-error> -->
+            </mat-form-field>
+            </div>
+
+
+
+            <button class="submit-btn" color="primary" matStepperPrevious mat-raised-button>
+              Back
+            </button>
+            <button class="submit-btn ml-2" color="primary" matStepperNext mat-raised-button type="submit" [disabled]="!userDetailsForm.valid">
+              Next
+            </button>
+
+          </form>
+    </mat-step>
+  </div>
+  <div class="col">
+      <mat-step [stepControl]="opportunityForm">
+          <ng-template matStepLabel>Opportunity Details</ng-template>
+          <form [formGroup]="opportunityForm" (ngSubmit)="onSubmitOpportunityDetails(opportunityForm.value)">
+              <div class="row">
+                <mat-form-field class="full-width col-sm-4">
+                  <input matInput [matDatepicker]="picker1" placeholder="Release Date" formControlName="recieveddate" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                  <mat-error>Field is required</mat-error>
+                  <!-- <mat-error *ngFor="let validation of validation_messages.birthday">
+                    <mat-error class="error-message" *ngIf="userDetailsForm.get('birthday').hasError(validation.type) && (userDetailsForm.get('birthday').dirty || userDetailsForm.get('birthday').touched)">{{validation.message}}</mat-error>
+                  </mat-error> -->
+                </mat-form-field>
+                <mat-form-field class="full-width col-sm-4">
+                  <input matInput [min]="opportunityForm.controls.recieveddate.value" (dateChange)="onSearchChange($event.target.value)" [matDatepicker]="picker" placeholder="Client Submission Date" formControlName="ClientSubmissionDate" required>
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error>Field is required</mat-error>
+                  <!-- <mat-error *ngFor="let validation of validation_messages.birthday">
+                    <mat-error class="error-message" *ngIf="userDetailsForm.get('birthday').hasError(validation.type) && (userDetailsForm.get('birthday').dirty || userDetailsForm.get('birthday').touched)">{{validation.message}}</mat-error>
+                  </mat-error> -->
+                </mat-form-field>
+                <div class="col-sm-4">
+                  <!--
+
+                                  <kendo-upload
+                                  [autoUpload]="false"
+                                  [saveUrl]="uploadSaveUrl"
+                                  [removeUrl]="uploadRemoveUrl"
+                                  [restrictions]="uploadRestrictions"
+                                  (select)="selectEventHandler($event)"
+                                  (clear)="clearEventHandler($event)"
+                                  (remove)="removeEventHandler($event)"
+                                  (complete)="completeEventHandler($event)">
+                                </kendo-upload>
+
+                                <event-log title="Event log" [events]="events"></event-log> -->
+                                  <!-- <div class="dropzone"
+                                  dropZone
+                                  (hovered)="toggleHover($event)"
+                                  (dropped)="startUpload($event)"
+                                  [class.hovering]="isHovering">
+
+
+
+                                  <h3>AngularFire Drop Zone</h3>
+
+                                  <div class="file">
+                                     <label class="file-label">
+
+
+                                     <input class="file-input" type="file" (change)="startUpload($event.target.files)" multiple>
+
+
+                                       <span class="file-cta">
+                                         <span class="file-icon">
+                                           <i class="fa fa-upload"></i>
+                                         </span>
+                                         <span class="file-label">
+                                           or choose a file…
+                                         </span>
+                                       </span>
+                                     </label>
+                                   </div>
+
+                             </div>
+                             <div *ngIf="percentage | async as pct">
+
+                                <progress class="progress is-info"
+                                          [value]="pct"
+                                          max="100">
+                                </progress>
+
+                                {{ pct | number }}%
+
+                              </div>
+
+
+                              <div *ngIf="snapshot | async as snap">
+                                {{ snap.bytesTransferred | fileSize }} of {{ snap.totalBytes | fileSize }}
+
+                                <div *ngIf="downloadURL | async as url">
+                                  <h3>Results!</h3>
+                                  <img [src]="url"><br>
+                                  <a [href]="url" target="_blank" rel="noopener">Download Me!</a>
+                                </div>
+
+                                <button (click)="task.pause()" class="button is-warning" [disabled]="!isActive(snap)">Pause</button>
+                                <button (click)="task.cancel()" class="button is-danger" [disabled]="!isActive(snap)">Cancel</button>
+                                <button (click)="task.resume()" class="button is-info"   [disabled]="!(snap?.state === 'paused')">Resume</button>
+
+                              </div> -->
+
+
+
+                                    <!-- <label>
+                                       <input type="file" (change)="detectFiles($event)">
+                                    </label>
+
+                                    <button
+                                            [disabled]="!selectedFiles"
+                                            (click)="uploadSingle()">
+
+                                      Upload
+                                    </button>  -->
+
+
+                                       <input class="custom-file-input" id="importFile" type="file" (change)="detectFiles($event)" multiple>
+                                       <label class="custom-file-label" #labelImport for="importFile"><i class="fas fa-search"></i> Choose file</label>
+
+                                      <button class="btn btn-outline-secondary mt-2"
+                                              [disabled]="!selectedFiles"
+                                              (click)="uploadMulti()" [ngStyle]="{'border-color':uploadeddata ? 'red' : '#A0A6AB' }">
+
+                                        Upload
+                                      </button>
+                                      <div *ngIf="currentUpload">
+                                      <div class="progress full-width mt-2">
+                                        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                                      </div>
+                                      Progress: {{currentUpload?.name}} | {{currentUpload?.progress | number :'1.2-2'}}% Complete
+                                    </div>
+                              </div>
+            </div>
+            <div class="row">
+              <mat-form-field class="full-width col-sm-4">
+                <textarea matInput  placeholder="Project Description" formControlName="projectdesc"></textarea>
+                <!-- <mat-error *ngFor="let validation of validation_messages.bio">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('bio').hasError(validation.type) && (userDetailsForm.get('bio').dirty || userDetailsForm.get('bio').touched)">{{validation.message}}</mat-error>
+                </mat-error> -->
+              </mat-form-field>
+
+            <mat-form-field class="full-width col-sm-4">
+              <textarea matInput placeholder="Other Observation" formControlName="otherobservation"></textarea>
+              <!-- <mat-error *ngFor="let validation of validation_messages.bio">
+                <mat-error class="error-message" *ngIf="userDetailsForm.get('bio').hasError(validation.type) && (userDetailsForm.get('bio').dirty || userDetailsForm.get('bio').touched)">{{validation.message}}</mat-error>
+              </mat-error> -->
+            </mat-form-field>
+            <mat-form-field class="full-width col-sm-4">
+                <textarea matInput placeholder="Or Unified Files Url" formControlName="url"></textarea>
+                <mat-error *ngFor="let validation of validation_messages.bio">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('bio').hasError(validation.type) && (userDetailsForm.get('bio').dirty || userDetailsForm.get('bio').touched)">{{validation.message}}</mat-error>
+                </mat-error>
+              </mat-form-field>
+
+
+            </div>
+            <div class="row">
+              <mat-form-field class="full-width col-sm-4">
+                <mat-select placeholder="Project Duration" formControlName="delivery">
+                  <mat-option *ngFor="let size of Timeline" [value]="size">
+                    {{ size }}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+              <mat-form-field class="full-width col-sm-4">
+                <mat-select placeholder="Required Technology" formControlName="technology">
+                  <mat-option *ngFor="let size of Technology" [value]="size">
+                    {{ size }}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+
+            <mat-form-field class="full-width col-sm-4">
+                <mat-select placeholder="Chance of Winning" formControlName="chance">
+                  <mat-option *ngFor="let size of Chances" [value]="size">
+                    {{ size }}
+                  </mat-option>
+                </mat-select>
+
+              </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field class="full-width col-sm-4">
+                    <mat-select placeholder="How did we learn about the opportunity?" formControlName="learn">
+                      <mat-option *ngFor="let size of data" [value]="size">
+                        {{ size }}
+                      </mat-option>
+                    </mat-select>
+
+                  </mat-form-field>
+              <mat-form-field class="full-width col-sm-4" [floatLabel]="'always'">
+                <mat-label>Competitors</mat-label>
+                <input matInput formControlName="competitors">
+                <!-- <mat-error *ngFor="let validation of validation_messages.first_name">
+                  <mat-error class="error-message" >{{validation_messages.first_name.message}}</mat-error>
+                </mat-error> -->
+              </mat-form-field>
+              <div class="full-width col-sm-4">
+              <mat-form-field class="full-width col-6" [floatLabel]="'always'">
+                  <mat-label>Budget Range</mat-label>
+                  <input type="text" matInput formControlName="budgetrange" placeholder="{{opportunityForm.get('currency').value}}">
+                  <!-- <mat-hint align="start"><strong>Min:</strong>0</mat-hint>
+                  <mat-hint align="end"><strong>Max:</strong>10,000,000</mat-hint> -->
+                  <mat-error *ngFor="let validation of validation_messages.last_name">
+                    <mat-error class="error-message" *ngIf="generalinfoForm.get('last_name').hasError(validation.type) && (generalinfoForm.get('last_name').dirty || generalinfoForm.get('last_name').touched)">{{validation.message}}</mat-error>
+                  </mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="full-width col-6">
+                    <mat-select formControlName="currency">
+                      <mat-option *ngFor="let size of currencies" [value]="size">
+                        {{ size }}
+                      </mat-option>
+                    </mat-select>
+
+                  </mat-form-field>
+              </div>
+            </div>
+            <button class="submit-btn" color="primary" matStepperPrevious mat-raised-button>
+              Back
+            </button>
+            <button class="submit-btn ml-2" color="primary" matStepperNext mat-raised-button type="submit" [disabled]="!opportunityForm.valid || uploadeddata">
+                Next
+              </button>
+            </form>
+        </mat-step>
+      </div>
+      <div class="col">
+        <mat-step [stepControl]="submissionDetailsForm">
+          <ng-template matStepLabel>Submission Details Form</ng-template>
+          <form [formGroup]="submissionDetailsForm" (ngSubmit)="onSubmitSubmissionDetails(submissionDetailsForm.value)">
+          <div class="row">
+            <mat-form-field class="full-width col-sm-4">
+              <mat-select placeholder="Type of Proposal Submission" formControlName="proptype">
+                <mat-option *ngFor="let type of proptypes" [value]="type">
+                  {{ type }}
+                </mat-option>
+              </mat-select>
+
+            </mat-form-field>
+            <mat-form-field class="full-width col-sm-4">
+                <input matInput [min]="opportunityForm.controls.recieveddate.value" (dateChange)="onSearchChangesub($event.target.value)" [matDatepicker]="picker3" placeholder="Due date to subsidiary" formControlName="dueDate" required>
+                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                <mat-datepicker #picker3></mat-datepicker>
+                <mat-error>Field is required</mat-error>
+                <!-- <mat-error *ngFor="let validation of validation_messages.birthday">
+                  <mat-error class="error-message" *ngIf="userDetailsForm.get('birthday').hasError(validation.type) && (userDetailsForm.get('birthday').dirty || userDetailsForm.get('birthday').touched)">{{validation.message}}</mat-error>
+                </mat-error> -->
+              </mat-form-field>
+          </div>
+          <button class="submit-btn" color="primary" matStepperPrevious mat-raised-button>
+            Back
+          </button>
+          <button class="submit-btn ml-2" color="primary" matStepperNext mat-raised-button type="submit" [disabled]="!submissionDetailsForm.valid">
+            Submit
+          </button>
+        </form>
+          </mat-step>
+          </div>
+          <!-- <mat-step>
+              <ng-template matStepLabel>Done</ng-template>
+              You are now done.
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button (click)="stepper.reset()">Reset</button>
+                <button mat-button (click)="FormSubmission()">Submit</button>
+              </div>
+            </mat-step> -->
+
+  </mat-horizontal-stepper>
+  </div>
+
+</div>
+
+
